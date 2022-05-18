@@ -19,6 +19,7 @@ export const AddNewItem = (props: AddNewItemsProps) => {
           onAdd(text);
           setShowForm(false);
         }}
+        onCancel={() => setShowForm(false)}
       />
     );
   }

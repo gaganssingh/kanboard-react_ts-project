@@ -56,7 +56,7 @@ export const AddItemButton = styled.button<AddItemButtonProps>`
   }
 `;
 
-export const NewItemFormContainer = styled.div`
+export const NewItemFormContainer = styled.form`
   max-width: 300px;
   display: flex;
   flex-direction: column;
@@ -64,12 +64,24 @@ export const NewItemFormContainer = styled.div`
   align-items: flex-start;
 `;
 
-export const NewItemButton = styled.button`
-  background-color: #5aac44;
-  border-radius: 3px;
-  border: none;
-  box-shadow: none;
+export const ButtonContainer = styled.div`
+  display: flex;
+  width: 65%;
+  justify-content: flex-start;
+  gap: 30px;
+`;
+
+type ButtonProps = {
+  cancel?: boolean;
+};
+
+export const Button = styled.button<ButtonProps>`
   color: #fff;
+  background-color: ${(props) => (props.cancel ? "#9c9c9c" : "#5aac44")};
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  box-shadow: none;
   padding: 6px 12px;
   text-align: center;
 `;
