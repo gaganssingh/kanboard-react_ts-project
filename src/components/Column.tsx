@@ -1,9 +1,11 @@
 import React from "react";
+import { useAppState } from "../state/AppStateContext";
 import { ColumnContainer, ColumnTitle } from "../styles";
 import { AddNewItem } from "./AddNewItem";
 import { Card } from "./Card";
 
 type ColumnProps = {
+  id: string;
   text: string;
 };
 
@@ -17,13 +19,17 @@ type ColumnProps = {
 //   text: string;
 // }>;
 
-export const Column: React.FC<ColumnProps> = ({ text }) => {
+export const Column: React.FC<ColumnProps> = ({ id, text }) => {
+  const { getTasksByListId } = useAppState();
+
+  const tasks = getTasksByListId(id);
+
   return (
     <ColumnContainer>
       <ColumnTitle>{text}</ColumnTitle>
-      <Card text="Make kanboard" />
-      <Card text="Learn typescript" />
-      <Card text="Buy milk" />
+      {tasks.map((task) => (
+        <Card key={task.id} {...task} />
+      ))}
       <AddNewItem
         onAdd={console.log}
         toggleButtonText="+ Add another card"
