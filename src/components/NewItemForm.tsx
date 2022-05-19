@@ -24,11 +24,16 @@ export const NewItemForm = ({ onAdd, onCancel }: NewItemFormProps) => {
     onAdd(text);
   };
 
+  const handleCancelButton = () => {
+    setText("");
+    onCancel();
+  };
+
   return (
     <NewItemFormContainer onSubmit={handleFormSubmit}>
       <NewItemInput ref={inputRef} value={text} onChange={onInputChange} />
       <ButtonContainer>
-        <Button type="button" cancel>
+        <Button type="button" cancel onClick={handleCancelButton}>
           Cancel
         </Button>
         <Button type="submit">Create</Button>
