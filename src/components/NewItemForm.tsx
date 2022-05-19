@@ -5,7 +5,7 @@ import {
   NewItemFormContainer,
   NewItemInput,
 } from "../styles";
-import { useFocus } from "../utils/useFocus";
+import { useFocus } from "../hooks/useFocus";
 
 type NewItemFormProps = {
   onAdd(text: string): void;
