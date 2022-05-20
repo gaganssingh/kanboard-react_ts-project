@@ -12,6 +12,7 @@ import { Card } from "./Card";
 type ColumnProps = {
   id: string;
   text: string;
+  isPreview?: boolean;
 };
 
 // DIFFERENT WAYS TO DEFINE children PROPS
@@ -24,7 +25,7 @@ type ColumnProps = {
 //   text: string;
 // }>;
 
-export const Column: React.FC<ColumnProps> = ({ id, text }) => {
+export const Column: React.FC<ColumnProps> = ({ id, text, isPreview }) => {
   const { getTasksByListId, dispatch, draggedItem } = useAppState();
   const tasks = getTasksByListId(id);
 
@@ -47,7 +48,11 @@ export const Column: React.FC<ColumnProps> = ({ id, text }) => {
 
   drag(drop(ref));
   return (
-    <ColumnContainer ref={ref} isHidden={isHidden(draggedItem, "COLUMN", id)}>
+    <ColumnContainer
+      ref={ref}
+      isHidden={isHidden(draggedItem, "COLUMN", id, isPreview)}
+      isPreview={isPreview}
+    >
       <ColumnTitle>{text}</ColumnTitle>
       {tasks.map((task) => (
         <Card key={task.id} {...task} />
