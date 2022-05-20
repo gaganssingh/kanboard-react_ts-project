@@ -21,7 +21,11 @@ export const NewItemForm = ({ onAdd, onCancel }: NewItemFormProps) => {
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onAdd(text);
+    if (text === "") {
+      onCancel();
+    } else {
+      onAdd(text.trim());
+    }
   };
 
   const handleCancelButton = () => {
